@@ -16,9 +16,6 @@ pipeline {
             when {
                 branch 'master'
             }
-            environment {
-                CANARY_REPLICAS = 1
-            }
             steps {
                 script {
                     app = docker.build(DOCKER_IMAGE_NAME)
@@ -48,6 +45,9 @@ pipeline {
             when {
                 branch 'master'
             }
+            environment {
+                CANARY_REPLICAS = 1
+            }            
             steps {
                 kubernetesDeploy(
                     kubeconfigId: 'kubeconfig',
@@ -60,6 +60,10 @@ pipeline {
             when {
                 branch 'master'
             }
+            environment {
+                CANARY_REPLICAS = 0
+            }
+            
             steps {
                 input 'Deploy to Production?'
                 milestone(1)

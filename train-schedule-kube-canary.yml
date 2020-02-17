@@ -19,7 +19,7 @@ metadata:
   name: train-schedule-deployment
   labels:
     app: train-schedule
-    track: stable, canary
+    track: canary
 spec:
   replicas: $CANARY_REPLICAS
   selector:
